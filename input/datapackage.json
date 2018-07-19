@@ -1,0 +1,65 @@
+{
+  "title": "Google-Landmarks Dataset",
+  "id": "google/google-landmarks-dataset",
+  "licenses": [{"name": "other"}],
+  "resources": [
+    {
+      "path": "index.csv",
+      "description": "This file contains information regarding the index images to be used in the retrieval task associated to the Google-Landmarks dataset.
+
+The first column contains the index image ID, and the second column contains its URL.",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "train.csv",
+      "description": "This file contains information regarding the training images to be used in the recognition task associated to the Google-Landmarks dataset. These images may also be useful to train models for the retrieval task.
+
+The first column contains the train image ID, the second column contains its URL, and the third column contains its label.",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "landmark_id",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "test.csv",
+      "description": "This file contains information regarding the test images to be used in the recognition and retrieval tasks associated to the Google-Landmarks dataset.
+
+The first column contains the test image ID, and the second column contains its URL.",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
