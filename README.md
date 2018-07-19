@@ -154,6 +154,7 @@ high_values_count
 ```
 
 landmark_id |	count
+----- | -----
 9633 |	50010
 6051 |	49806
 6599 |	23218
