@@ -8,23 +8,24 @@ Se ha seleccionado el dataset utilizado en la competencia de Kaggle Google Landm
 
 ### Analisis de datos
 
-Importaremos las librerias necesarias
+Descargaremos los datos de Kaggle Google Landmark Recognition Challenge https://www.kaggle.com/google/google-landmarks-dataset y los pondremos en la carpeta input.
+
+Importaremos las librerias necesarias:
 ```
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import matplotlib.pyplot as plt
-import seaborn as sns
 %matplotlib inline 
 ```
 
-Luego importaremos los datos
+Luego importaremos los datos:
 ```
 train_data = pd.read_csv('../input/train.csv')
 test_data = pd.read_csv('../input/test.csv')
 index = pd.read_csv('../input/index.csv')
 ```
 
-El tamaño de los datos de entrada y test
+El tamaño de los datos de entrada y test:
 ```
 print("Training data size",train_data.shape)
 print("Test data size",test_data.shape)
@@ -33,8 +34,9 @@ print("Test data size",test_data.shape)
 Training data size (1225029, 3)
 Test data size (117703, 2)
 ```
+Como se puede ver se posee una gran cantidad de datos de entrenamiento y prueba.
 
-Cantidad de landmarks unicos
+Cantidad de landmarks unicos:
 ```
 print("Unique landmark_id: ",len(train_data.groupby("landmark_id")["landmark_id"]))
 ```
@@ -46,7 +48,8 @@ Los 20 landmarks con mayor numero de imagenes
 ```
 train_data['landmark_id'].value_counts().head(20).plot.bar()
 ```
-![bar plot](https://github.com/okason97/google-landmark-machine-learning-acceleration/blob/master/plots/higher_frequency_landmarks.png)
+![bar_plot](https://github.com/okason97/google-landmark-machine-learning-acceleration/blob/master/plots/higher_frequency_landmarks.png)
+El landmark con id 9633 es el que posee la mayor cantidad de imagenes, superando por más de el doble a la cantidad de imagenes del tercer landmark con más imagenes.
 
 Datos faltantes
 ```
@@ -66,6 +69,7 @@ print("Missing url: ",test_data['url'].value_counts()["None"])
 ```
 Missing url:  2989
 ```
+Hay una gran cantidad de datos faltantes.
 
 Landmarks con poca cantidad de imagenes (<1000)
 ```
@@ -147,6 +151,31 @@ len(low_values_count)
 14835
 ```
 
+Landmarks con poca cantidad de imagenes (<100)
+```
+# landmark_id with low count
+values_count = pd.DataFrame(train_data['landmark_id'].value_counts())
+values_count.columns = ["count"]
+low_values_count = values_count[values_count["count"] < 100]
+len(low_values_count)
+```
+```
+12928
+```
+
+Landmarks con poca cantidad de imagenes (<10)
+```
+# landmark_id with low count
+values_count = pd.DataFrame(train_data['landmark_id'].value_counts())
+values_count.columns = ["count"]
+low_values_count = values_count[values_count["count"] < 10]
+len(low_values_count)
+```
+```
+6190
+```
+Como se puede ver, existen una gran cantidad de landmarks con poca cantidad de imagenes, lo que podria dificultar su prediccion.
+
 Landmarks con mucha cantidad de imagenes (>=1000)
 ```
 high_values_count = values_count[values_count["count"] >= 1000]
@@ -216,3 +245,30 @@ None |	9260
 5206 |	1023
 7130 |	1007
 2246 |	1006
+
+Cantidad de landmarks con mucha cantidad de imagenes (>=1000)
+```
+len(high_values_count)
+```
+```
+117
+```
+
+Veamos algunas imagenes
+
+```
+from IPython.display import Image
+from IPython.core.display import HTML 
+
+def display_category(urls, category_name):
+    img_style = "width: 180px; margin: 0px; float: left; border: 1px solid black;"
+    images_list = ''.join([f"<img style='{img_style}' src='{u}' />" for _, u in urls.head(12).iteritems()])
+
+    display(HTML(images_list))
+    
+category = train_data['landmark_id'].value_counts().keys()[0]
+urls = train_data[train_data['landmark_id'] == category]['url']
+display_category(urls, "")
+```
+![some_images](https://github.com/okason97/google-landmark-machine-learning-acceleration/blob/master/plots/someimages.png)
+Se puede ver que las imagenes poseen diferente iluminación, diferente tamaño y vistas a landmarks obstaculizadas.
