@@ -46,4 +46,5 @@ Los 20 landmarks con mayor numero de imagenes
 ```
 train_data['landmark_id'].value_counts().head(20).plot.bar()
 ```
+(https://github.com/okason97/google-landmark-machine-learning-acceleration/blob/master/plots/higher_frequency_landmarks.png)
 
