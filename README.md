@@ -272,3 +272,20 @@ display_category(urls, "")
 ```
 ![some_images](https://github.com/okason97/google-landmark-machine-learning-acceleration/blob/master/plots/someimages.png)
 Se puede ver que las imagenes poseen diferente iluminación, diferente tamaño y vistas a landmarks obstaculizadas.
+
+### Preparación de datos
+
+Dada la gran cantidad de datos, comenzaremos prediciendo los primeros 10 landmarks con mayor cantidad de imagenes asociadas.
+landmark_id |	#urls
+----- | -----
+9633 |	50010
+6051 |	49806
+6599 |	23218
+9779 |	18309
+2061 |	13183
+5554 |	11033
+6651 |	9444
+5376 |	9161
+6696 |	9161
+2743 |	8950
+
