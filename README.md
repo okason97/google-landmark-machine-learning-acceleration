@@ -276,6 +276,7 @@ Se puede ver que las imagenes poseen diferente iluminación, diferente tamaño y
 ### Preparación de datos
 
 Dada la gran cantidad de datos, comenzaremos prediciendo los primeros 10 landmarks con mayor cantidad de imagenes asociadas.
+
 landmark_id |	#urls
 ----- | -----
 9633 |	50010
