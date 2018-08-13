@@ -16,13 +16,15 @@ import sys, os, multiprocessing, csv, tqdm
 from urllib import request, error
 from PIL import Image
 from io import BytesIO
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
 
 def parse_data(data_file):
-    csvfile = open(data_file, 'r')
-    csvreader = csv.reader(csvfile)
-    key_url_list = [line[:2] for line in csvreader]
-    return key_url_list[1:]  # Chop off header
+    csvreader = pd.read_csv(data_file)
+    csvreader = csvreader[csvreader['landmark_id'] != 'None']
+    csvreader = csvreader[csvreader['landmark_id'].isin(csvreader['landmark_id'].value_counts().head(10).index.values)]
+    key_url_list = csvreader[['id','url']]
+    return key_url_list.values
 
 
 def download_image(key_url):
@@ -72,7 +74,7 @@ def loader():
         os.mkdir(out_dir)
 
     key_url_list = parse_data(data_file)
-    pool = multiprocessing.Pool(processes=6)  # Num of CPUs
+    pool = multiprocessing.Pool(processes=8)  # Num of CPUs
     failures = sum(tqdm.tqdm(pool.imap_unordered(download_image, key_url_list), total=len(key_url_list)))
     print('Total number of download failures:', failures)
     pool.close()
