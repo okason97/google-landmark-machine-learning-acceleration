@@ -23,6 +23,7 @@ def parse_data(data_file):
     csvreader = pd.read_csv(data_file)
     csvreader = csvreader[csvreader['landmark_id'] != 'None']
     csvreader = csvreader[csvreader['landmark_id'].isin(csvreader['landmark_id'].value_counts().head(10).index.values)]
+    csvreader.groupby('landmark_id', group_keys=False).apply(lambda df: df.sample(8000))
     key_url_list = csvreader[['id','url']]
     return key_url_list.values
 
