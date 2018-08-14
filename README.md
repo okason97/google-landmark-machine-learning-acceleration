@@ -290,7 +290,7 @@ landmark_id |	#urls
 6696 |	9161
 2743 |	8950
 
-Dados los diferentes tamaños de las imagenes, estas deberan ser modificadas para poseer todas el mismo tamaño (256x256). Para que no se deformen en este proceso, primero se modificara su aspect ratio para darles forma de cuadrado.
+Dados los diferentes tamaños de las imagenes, estas deberan ser modificadas para poseer todas el mismo tamaño (256x256).
 Se reduciran dimensionalidad de las imagenes cambiando de canales RGB a un solo canal en escala de grises.
 Luego, se realizara ecualizacion de histograma para aumentar el contraste en las imagenes.
 Finalmente, se normalizaran las imagenes, esto permite llegar más rapido a la convergencia. Se resta la media a cada pixel y se divide por la desviacion estandar, luego se escalan los resultados al rango [0,255].
