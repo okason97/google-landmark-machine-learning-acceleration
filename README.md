@@ -303,3 +303,6 @@ Finalmente, se normalizaran las imagenes, esto permite llegar más rapido a la c
 Se utilizara una CNN en tensorflow. Con 
 Hiperparametros
 batch_size = 256
+
+## Fuentes
+https://becominghuman.ai/image-data-pre-processing-for-neural-networks-498289068258
