@@ -306,3 +306,4 @@ batch_size = 256
 
 ## Fuentes
 https://becominghuman.ai/image-data-pre-processing-for-neural-networks-498289068258
+https://benanne.github.io/2015/03/17/plankton.html#prepro-augmentation
