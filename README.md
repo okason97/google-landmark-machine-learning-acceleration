@@ -290,9 +290,12 @@ landmark_id |	#urls
 6696 |	9161
 2743 |	8950
 
-Dados los diferentes tamaños de las imagenes, estas deberan ser modificadas para poseer todas el mismo tamaño (256x256). Para que no se deformen en este proceso, primero se modificara su aspect ratio para darles forma de cuadrado.
+Dados los diferentes tamaños de las imagenes, estas deberan ser modificadas para poseer todas el mismo tamaño (256x256). En caso de que el ratio de la imagen difiera demasiado del buscado, se optara por recortarla.
+
 Se reduciran dimensionalidad de las imagenes cambiando de canales RGB a un solo canal en escala de grises.
+
 Luego, se realizara ecualizacion de histograma para aumentar el contraste en las imagenes.
+
 Finalmente, se normalizaran las imagenes, esto permite llegar más rapido a la convergencia. Se resta la media a cada pixel y se divide por la desviacion estandar, luego se escalan los resultados al rango [0,255].
 
 ### Definición del modelo
@@ -300,3 +303,7 @@ Finalmente, se normalizaran las imagenes, esto permite llegar más rapido a la c
 Se utilizara una CNN en tensorflow. Con 
 Hiperparametros
 batch_size = 256
+
+## Fuentes
+https://becominghuman.ai/image-data-pre-processing-for-neural-networks-498289068258
+https://benanne.github.io/2015/03/17/plankton.html#prepro-augmentation
