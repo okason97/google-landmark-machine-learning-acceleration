@@ -296,9 +296,30 @@ Se reduciran dimensionalidad de las imagenes cambiando de canales RGB a un solo 
 
 Luego, se realizara ecualizacion de histograma para aumentar el contraste en las imagenes.
 
-Finalmente, se normalizaran las imagenes, esto permite llegar más rapido a la convergencia. Se resta la media a cada pixel y se divide por la desviacion estandar, luego se escalan los resultados al rango [0,255].
+Finalmente, se normalizaran las imagenes, esto permite llegar más rapido a la convergencia. Se realizara MinMaxScaling, lo que escalara cada pixel de las imagenes al rango (0,1) de la siguiente forma: 
+
+```
+X_std = (X - X.min(axis=0)) / (X.max(axis=0) - X.min(axis=0))
+X_scaled = X_std * (max - min) + min
+```
 
 ### Definición del modelo
+
+Se utilizara una CNN programada utilizando Tensorflow. Esta tendra la siguiente arquitectura:
+
+nombre de capa | descripcion
+----- | -----
+conv1 | red neuronal convolucional con tamaño de ventana de 5x5 y 
+relu |
+max_pool |
+conv2 |
+relu |
+max_pool |
+conv3 |
+max_pool |
+dense1 |
+dense2 |
+out |
 
 Se utilizara una CNN en tensorflow. Con 
 Hiperparametros
